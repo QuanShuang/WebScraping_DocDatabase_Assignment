@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ 
+  <!-- Style setting -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Mission to Mars</title>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <br>
+    <!-- header -->
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars...</h1>
+      <p>Are You READY?</p>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Let's GO!</a></p>
+    </div>
+
+    <br>
+    <!-- Latest news -->
+    <div class="row">
+        <div class="col-12" style="margin:50px;">
+            <h2>Latest Mars News</h2>
+            <h3>{{ mars.news_title }}</h3>
+            <p>{{ mars.news_p }}</p>
+
+    </div>
+    
+    <br>
+    <div class= "row">
+      <div class ="col-8" style = "margin:100px;">
+        <h2>Featured Mars Image</h2>
+        <br>
+        <img src="{{ mars.featured_image_url }}" alt="featured_image_url">
+
+      </div>
+     </div>
+
+
+     <br>
+
+     <!-- Mars weather -->
+     <div class="col-md-4">
+      <br>
+      <div class="container-fluid">
+        <br>
+
+        <h3>Current Weather on Mars is:</h3>
+        <br>
+        <p>{{ mars.weather }}</p>
+
+      </div>
+      
+      <!-- Mars facts table -->
+      <div class= "container">
+        <br>
+        <h3> Mars Facts Table </h3>
+        <p>{{ mars.html_fact | safe }} </p>
+        
+      </div>
+
+     </div>
+
+     <br>
+
+      <!-- Mars hemisphere pictures -->
+     <div class="container">
+      <br>
+      <blockquote class="blockquote text-center">
+          <h2 class="mb-2">Mars Hemispheres Pictures</h2>
+          <hr>
+      </blockquote>
+
+     </div>
+     <br>
+     <div class="card-deck d-flex justify-content-center">
+        {% for hemi in mars.hemisphere_image_urls %}
+        <div class="col-md-5">
+            <div class="card" style="margin:20px;">
+                <img class="card-img-top" src="{{ hemi.img_url }}" alt="{{ hemi.img_title }}">
+                <div class="card-body">
+                    <p class="card-text">{{ hemi.title }}</p>
+                </div>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+  </div>
+  
+</div>
+
+
+</body>
+
+</html>
